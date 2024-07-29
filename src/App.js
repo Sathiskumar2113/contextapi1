@@ -1,25 +1,37 @@
 import logo from './logo.svg';
 import './App.css';
+import B from './components/B';
+import { createContext, useContext, useEffect, useState } from 'react';
+
+const Namecontext=createContext();
+
+function D()
+{
+  const{name,setName}=useContext(Namecontext);
+  useEffect(()=>{
+    setTimeout(()=>{
+      setName('sathiiiiiiooo');
+    },1000)
+  })
+  return(
+    <di>
+     <h1>{name}</h1>
+    </di>
+  )
+}
+
+
 
 function App() {
+  const [name,setName]=useState("sathis");
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Namecontext.Provider value={{name,setName}}>
+       <B></B>
+      </Namecontext.Provider>
+  
     </div>
   );
 }
 
-export default App;
+export{App as default,Namecontext};
